@@ -2,7 +2,7 @@ from flask import Flask
 
 import config
 from blueprints.general import app as general
-from blueprints.admin import app as admin
+from blueprints.admin import admin
 from blueprints.user import app as user
 import config
 import extentions
@@ -15,6 +15,7 @@ app.register_blueprint(admin)
 
 # تنظیمات دیتابیس و راه‌اندازی
 app.config["SQLALCHEMY_DATABASE_URI"] =config.SQLALCHEMY_DATABASE_URI
+app.config['SECRET_KEY']=config.SECRET_KEY
 extentions.db.init_app(app)
 
 with app.app_context():
