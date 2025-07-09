@@ -1,38 +1,37 @@
-from os import abort
-
-from click import password_option
-from flask import Blueprint, render_template, request, session,abort
-import os
-
+from flask import Blueprint, render_template, request, session, abort, url_for
 from werkzeug.utils import redirect
-
+import os
 import config
 
 admin = Blueprint(
     'admin',
     __name__,
-    template_folder=os.path.join('templates', 'admin')  # مسیر قالب های این بلوپرینت
+    template_folder=os.path.join('templates', 'admin')
 )
 
-@admin.route('/admin/login' , methods=['GET','POST'])
+@admin.before_request
+def before_request():
+    if session.get('admin_login', None) == None and request.endpoint !='admin.login':
+        abort(403)
+
+@admin.route('/admin/login', methods=['GET', 'POST'])
 def login():
     if request.method == "POST":
-         username=request.form.get('username',None)
-         password=request.form.get('password',None)
+        username = request.form.get('username')
+        password = request.form.get('password')
 
-         if username==config.ADMIN_USERNAME and password==config.ADMIN_PASSWORD:
-             session['admin_login']=username
-             return  redirect("/admin/dashboard")
-         else:
-             return redirect("/admin/login")
+        if username == config.ADMIN_USERNAME and password == config.ADMIN_PASSWORD:
+            session['admin_login'] = username
+            return redirect("/admin/dashboard")
+        else:
+            return redirect("/admin/login")
 
-    else:
-        return render_template('login.html')  # فقط نام فایل، چون مسیر رو دادیم در بلوپرینت
-
-
+    return render_template('login.html')
 
 @admin.route('/admin/dashboard', methods=['GET'])
 def dashboard():
-    if session.get('admin_login') is None:
-        abort(403)
-    return "dashboard.html"
+    return render_template('dashboard.html')
+
+@admin.route('/admin/dashboard/products', methods=['GET'])
+def products():
+    return render_template('products.html')
