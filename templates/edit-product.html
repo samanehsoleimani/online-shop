@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<title> edit products</title>
+{% endblock %}
+
+{% block body %}
+
+<form action="#" method="POST">
+    <input type="text" name="name" value="{{product.name}}" placeholder="نام محصول"><br>
+    <input type="number" name="price"  value="{{product.price}}" placeholder="قیمت محصول"><br>
+    <textarea name="description"  value="{{product.description}}" placeholder="توضیحات"></textarea><br>
+    <input type="checkbox" value="1" name="active" {% if product.active == 1 %}checked{% endif %}><br><br>
+    <button type="submit">ثبت</button>
+
+
+</form>
+{% endblock %}
