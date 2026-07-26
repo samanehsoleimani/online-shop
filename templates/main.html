@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}فروشگاه آنلاین - صفحه اصلی{% endblock %}
+
+{% block body %}
+
+   {% for p in products %}
+      {{p.name}}
+   {% endfor %}
+
+
+{% endblock %}

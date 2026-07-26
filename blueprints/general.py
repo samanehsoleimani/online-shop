@@ -1,15 +1,19 @@
-from flask import Blueprint
+from itertools import product
 
+from flask import Blueprint,render_template
+
+from models.product import Product
 
 app = Blueprint("app" ,__name__)
 
 
 @app.route('/')
 def home():
-    return 'main page'
+    products = Product.query.all()
+    return render_template("main.html" ,  products=products)
 
 
 
 @app.route('/about')
 def about():
-    return 'about us'
+    return render_template("/about.html")
