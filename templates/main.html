@@ -5,7 +5,9 @@
 {% block body %}
 
    {% for p in products %}
-      {{p.name}}
+
+       <a href="{{ url_for('app.product', id=p.id, name=p.name) }}">{{ p.name }}</a>
+
    {% endfor %}
 
 
