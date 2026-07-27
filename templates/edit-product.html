@@ -5,9 +5,11 @@
 {% endblock %}
 
 {% block body %}
+<td><img style="width : 50px" src="/static/cover/{{ product.id }}.jpg"></td>
 
-<form action="#" method="POST">
+<form action="#" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <label>cover : </label><input type="file" name="cover"><br>
     <input type="text" name="name" value="{{product.name}}" placeholder="نام محصول"><br>
     <input type="number" name="price"  value="{{product.price}}" placeholder="قیمت محصول"><br>
     <textarea name="description"  value="{{product.description}}" placeholder="توضیحات"></textarea><br>

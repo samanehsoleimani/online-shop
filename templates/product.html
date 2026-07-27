@@ -3,10 +3,11 @@
 {% block title %}محصول {{ product.name}}{% endblock %}
 
 {% block body %}
+<img style="width : 50px" src="/static/cover/{{ p.id }}.jpg">
 
-{{product.id}}<br>
-{{product.name}}<br>
-{{product.price}}
+        {{product.id}}<br>
+        {{product.name}}<br>
+        {{product.price}}
 
 
 {% endblock %}
