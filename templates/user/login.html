@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %} ورود کاربران{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+<h1>user login</h1>
+<form action="#" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+    <input type="hidden" name="register"  value="1">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input type="number" name="phone" placeholder="phone">
+    <input type="text" name="address" placeholder="address">
+    <input type="submit">
+</form>
+
+
+{% endblock %}

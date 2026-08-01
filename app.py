@@ -5,9 +5,10 @@ from blueprints.general import app as general
 from blueprints.admin import admin
 from blueprints.user import app as user
 from flask_wtf.csrf import CSRFProtect
-
+from flask_login import LoginManager
 import config
 import extentions
+from models.user import User
 
 # اپلیکیشن اصلی و ثبت بلوپرینت‌ها
 app = Flask(__name__)
@@ -21,6 +22,14 @@ app.config['SECRET_KEY']=config.SECRET_KEY
 extentions.db.init_app(app)
 
 csrf = CSRFProtect(app)
+
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
 
 with app.app_context():
     extentions.db.create_all()
