@@ -11,7 +11,7 @@ app = Blueprint("user" ,__name__)
 
 
 @app.route('/user/login', methods= ['GET', 'POST'])
-def user():
+def login():
     if request.method == 'GET':
         return render_template("user/login.html")
     else:
@@ -25,7 +25,7 @@ def user():
             # حالا مستقیماً از User استفاده کن
             new_user = User(
                 username=username,
-                password=sha256_crypt.encrypt(password),
+                password=sha256_crypt.hash(password),
                 phone=phone,
                 address=address
             )
@@ -40,13 +40,17 @@ def user():
             user= User.query.filter(User.username == username).first()
             if user == None:
                 flash('نام کاربری یا رمز اشتباه است .')
-                return redirect(url_for('user.user'))
+                return redirect(url_for('user.login'))
 
             if sha256_crypt.verify(password,user.password):
                 login_user(user)
                 return redirect('/user/dashboard')
             else:
-                flash('نام کاربری یا رمز اشتباه سات .')
+                flash('نام کاربری یا رمز اشتباه است...')
                 return redirect(url_for('user.login'))
 
         return  'done'
+
+@app.route('/user/dashboard', methods=['GET'])
+def dashboard():
+    return "done...."
