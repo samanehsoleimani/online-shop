@@ -12,5 +12,5 @@ class CartItem(db.Model):
 
     quantity =Column(Integer)
 
-    product=db.relationship('Product',backref('cart_items'))
-    cart=db.relationship('Cart',backref('cart_items'))
+    product = db.relationship("Product", backref=backref("cart_items",lazy="dynamic"))
+    cart = db.relationship("Cart", backref=backref("cart_items",lazy="dynamic"))

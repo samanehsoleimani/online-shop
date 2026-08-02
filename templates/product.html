@@ -3,11 +3,16 @@
 {% block title %}محصول {{ product.name}}{% endblock %}
 
 {% block body %}
-<img style="width : 50px" src="/static/cover/{{ p.id }}.jpg">
+<img style="width : 50px" src="/static/cover/{{ product.id }}.jpg">
 
         {{product.id}}<br>
         {{product.name}}<br>
-        {{product.price}}
+        {{product.price}}<br>
 
+        <form method="get" action="/add_to_cart">
+                <input type="hidden" name="id" value="{{ product.id}}">
+                <input type="submit"  value="اضافه کردن به سبد خرید">
+
+        </form>
 
 {% endblock %}
