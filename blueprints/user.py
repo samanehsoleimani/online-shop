@@ -74,14 +74,15 @@ def add_to_cart():
 
     cart_item = CartItem.query.filter_by(
         cart_id=cart.id,
-        product_id=product.id
+        product_id=product.id,
     ).first()
 
     if cart_item is None:
         cart_item = CartItem(
             quantity=1,
             cart=cart,
-            product=product
+            product=product,
+            price=product.price
         )
         db.session.add(cart_item)
     else:
@@ -100,3 +101,20 @@ def dashboard():
 @login_required
 def cart():
     return render_template("user/cart.html")
+
+
+
+
+@app.route('/remove_from_cart', methods=['GET'])
+@login_required
+def remove_from_cart():
+    id = request.args.get('id')
+    cart_item = CartItem.query.filter(CartItem.id == id).first_or_404()
+    if cart_item.quantity >1:
+        cart_item.quantity -= 1
+    else:
+        db.session.delete(cart_item)
+    db.session.commit()
+    return redirect(url_for("user.cart"))
+
+
