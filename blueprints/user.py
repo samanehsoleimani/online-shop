@@ -3,12 +3,13 @@ from flask_login import login_user, login_required, current_user
 from werkzeug.utils import redirect
 
 from models.cart import Cart
+from models.payment import Payment
 from models.product import Product
 from models.user import User
 from models.cart_item import CartItem
 from passlib.hash import sha256_crypt
 from extentions import db
-
+import requests
 app = Blueprint("user" ,__name__)
 
 
@@ -120,5 +121,30 @@ def remove_from_cart():
         db.session.delete(cart_item)
     db.session.commit()
     return redirect(url_for("user.cart"))
+
+
+
+@app.route('/payment', methods=['GET'])
+@login_required
+def payment():
+   r=requests.post('https://sandbox.shepa.com/api/v1/token',data={
+       'api':'sandbox',
+       'amount':'10000',
+       'callback':"https://localhost:5000/veify"
+   })
+
+   token=r.json()['result']['token']
+   url = r.json()['result']['url']
+
+   cart=current_user.carts.filter(Cart.status == "pending").first()
+   pay= Payment(price= cart.total_price(),token=token)
+   pay.cart=cart
+   db.session.add(pay)
+   db.session.commit()
+
+
+   return redirect(url)
+
+
 
 
