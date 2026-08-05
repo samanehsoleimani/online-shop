@@ -127,16 +127,16 @@ def remove_from_cart():
 @app.route('/payment', methods=['GET'])
 @login_required
 def payment():
+   cart=current_user.carts.filter(Cart.status == "pending").first()
    r=requests.post('https://sandbox.shepa.com/api/v1/token',data={
        'api':'sandbox',
-       'amount':'10000',
-       'callback':"https://localhost:5000/veify"
+       'amount':cart.total_price(),
+       'callback':"http://localhost:5000/verify"
    })
 
    token=r.json()['result']['token']
    url = r.json()['result']['url']
 
-   cart=current_user.carts.filter(Cart.status == "pending").first()
    pay= Payment(price= cart.total_price(),token=token)
    pay.cart=cart
    db.session.add(pay)
@@ -144,6 +144,36 @@ def payment():
 
 
    return redirect(url)
+
+
+
+@app.route('/verify', methods=['GET'])
+@login_required
+def verify():
+   token=request.args.get('token')
+   pay =Payment.query.filter(Payment.token==token).first_or_404()
+   r=requests.post('https://sandbox.shepa.com/api/v1/verify',data={
+       'api':'sandbox',
+       'amount':pay.price,
+       'token':token    })
+
+   pay_status=bool( r.json()['success'])
+   if pay_status :
+       refid=r.json()['result']['refid']
+       transaction_id = r.json()['result']['transaction_id']
+       card_pan = r.json()['result']['card_pan']
+       transaction_id = r.json()['result']['transaction_id']
+
+       pay.card_pan=card_pan
+       pay.transaction_id=transaction_id
+       pay.refid=refid
+       pay.status = 'success'
+       pay.cart.status ='paid'
+   else:
+       pay.status ='error'
+   db.session.commit()
+
+   return redirect(url_for('user.dashboard'))
 
 
 
