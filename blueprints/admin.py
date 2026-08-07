@@ -4,6 +4,7 @@ from flask import Blueprint, render_template, request, session, abort, url_for
 from werkzeug.utils import redirect
 import os
 import config
+from models.cart import Cart
 from models.product import Product
 from extentions import db
 admin = Blueprint(
@@ -33,7 +34,21 @@ def login():
 
 @admin.route('/admin/dashboard', methods=['GET'])
 def dashboard():
-    return render_template('dashboard.html')
+    cart=Cart.query.filter(Cart.status != 'pending').all()
+    return render_template('dashboard.html',cart=cart)
+
+@admin.route('/admin/dashboard/order/<id>', methods=['GET','POST'])
+def order(id):
+    cart = Cart.query.filter(Cart.id == id).first_or_404()
+
+    if request.method=="GET":
+        return render_template('order.html',cart=cart)
+    else:
+        status = request.form.get('status')
+        cart.status=status
+        db.session.commit()
+        return redirect(url_for('admin.order', id=id))
+
 
 @admin.route('/admin/dashboard/products', methods=['GET' ,'POST'])
 def products():
