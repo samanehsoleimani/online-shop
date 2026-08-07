@@ -1,0 +1,119 @@
+@font-face {
+  font-family: Vazirmatn;
+  src: url('../font/Vazirmatn-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('../font/Vazirmatn-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('../font/Vazirmatn-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('../font/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('../font/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('../font/Vazirmatn-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('../font/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('../font/Vazirmatn-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('../font/Vazirmatn-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    background: #f7f0e8;
+    color: #212121;
+    padding-top: 120px;
+    font-family:Vazirmatn;
+    }
+
+/* استایل هدر و لوگو */
+header {
+    width: 100%;
+    text-align: center;
+}
+
+header > img {
+    max-width: 200px;
+    margin-top: 10px;
+}
+nav {
+    background-color: #f9edd6;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 115px;
+    box-shadow: 0px 0px 10px 0px rgb(169, 168, 168);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* اضافه شد: برای اینکه منو همیشه روی بقیه عناصر باشد */
+}
+
+/* استایل لیست لینک‌ها داخل منو */
+nav ul {
+    list-style: none; /* حذف نقاط لیست */
+    margin: 0;
+    padding: 0;
+    display: flex; /* قرار دادن لینک‌ها کنار هم */
+    gap: 45px;     /* فاصله بین لینک‌ها */
+}
+
+nav ul li a {
+    text-decoration: none; /* حذف خط زیر لینک‌ها */
+    color: #212121;
+    font-weight: bold;
+}

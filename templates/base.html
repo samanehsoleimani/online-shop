@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>{% block title %}عنوان پیش‌فرض{% endblock %}</title>
-
-    {% block header %}
-    <!-- اینجا می‌تونی CSS یا اسکریپت‌های اضافه بذاری -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">    {% block header %}
     {% endblock %}
 </head>
 <body>

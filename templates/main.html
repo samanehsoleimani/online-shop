@@ -1,8 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}فروشگاه آنلاین - صفحه اصلی{% endblock %}
+{% block title %}سیسمونی سوری بافت{% endblock %}
 
 {% block body %}
+
+<header>
+<header>
+    <img src="{{ url_for('static', filename='image/logo.png') }}" alt="sooribaaft">
+</header>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#">خانه</a></li>
+            <li><a href="#">محصولات</a></li>
+            <li><a href="#">سبد خرید</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+
 
    {% for p in products %}
 
