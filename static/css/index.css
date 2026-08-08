@@ -85,10 +85,6 @@ header {
     text-align: center;
 }
 
-header > img {
-    max-width: 200px;
-    margin-top: 10px;
-}
 nav {
     background-color: #f9edd6;
     position: fixed;
@@ -100,20 +96,146 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000; /* اضافه شد: برای اینکه منو همیشه روی بقیه عناصر باشد */
+    z-index: 1000;
 }
 
-/* استایل لیست لینک‌ها داخل منو */
 nav ul {
-    list-style: none; /* حذف نقاط لیست */
+    list-style: none;
     margin: 0;
     padding: 0;
-    display: flex; /* قرار دادن لینک‌ها کنار هم */
-    gap: 45px;     /* فاصله بین لینک‌ها */
+    display: flex;
+    gap: 45px;
 }
 
 nav ul li a {
-    text-decoration: none; /* حذف خط زیر لینک‌ها */
+    text-decoration: none;
     color: #212121;
     font-weight: bold;
 }
+.search-input {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 5px 5px;
+    outline: none;
+    font-family: 'Vazirmatn', sans-serif;
+    font-size: 12px;
+    width: 150px;
+}
+.auth-item {
+    margin-right: 120px;
+}
+
+.auth-btn {
+    background-color: #775935;
+    color: #ffffff !important;
+    padding: 8px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.auth-btn:hover {
+    background-color: #ac6f46;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+.logo{
+    margin-left: 120px;
+}
+.logo img{
+ max-width: 100px;
+ max-height: 100px;
+    }
+
+
+.mySwiper {
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 40px 20px 60px 20px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #e8c5a2;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.product-card {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.product-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+.product-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-name {
+    font-size: 1rem;
+    margin: 0 0 10px 0;
+    color: #333;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-price {
+    font-size: 0.9rem;
+    color: #e91e63;
+    margin: 0;
+    font-weight: 600;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #e91e63;
+    border-radius: 2px;
+}
+

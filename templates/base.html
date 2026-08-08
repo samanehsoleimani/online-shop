@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <title>{% block title %}عنوان پیش‌فرض{% endblock %}</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">    {% block header %}
-    {% endblock %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    {% block header %}{% endblock %}
 </head>
 <body>
-    {% block body %}
-    <!-- محتوای اصلی صفحات تو این بلاک قرار می‌گیره -->
-    {% endblock %}
+    {% block body %}{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
 </body>
 </html>
