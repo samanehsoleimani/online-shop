@@ -238,4 +238,91 @@ nav ul li a {
     background-color: #e91e63;
     border-radius: 2px;
 }
+/* استایل بخش دسته‌بندی‌ها */
+.category-shortcuts {
+    padding: 40px 15px; /* فاصله از بالا و پایین */
+    max-width: 1200px; /* حداکثر عرض برای اینکه در مانیتورهای بزرگ خیلی پخش نشود */
+    margin: 0 auto; /* وسط چین کردن کل بخش */
+}
+
+.category-container {
+    display: flex;
+    justify-content: center; /* وسط چین کردن باکس‌ها */
+    gap: 20px; /* فاصله بین سه باکس */
+    flex-wrap: wrap; /* اگر صفحه کوچک بود، باکس‌ها بروند زیر هم */
+}
+
+.category-box {
+    height: 400px;
+    display: flex;           /* اضافه کردن این خط بسیار مهم است */
+    flex-direction: column;  /* چیدمان عمودی: عکس بالا، متن پایین */
+    text-decoration: none;
+    text-align: center;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* حذف flex: 1 از اینجا اگر در جای دیگری برای کانتینر گذاشته‌ای،
+       اما اینجا برای خودِ باکس لازم نیست مگر اینکه در فلکس‌باکس اصلی باشد */
+}
+
+.category-box:hover {
+    transform: translateY(-10px); /* کمی بالا رفتن باکس هنگام نگه داشتن موس */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* ۱. تنظیم باکس اصلی */
+.category-box {
+    height: 400px;
+    display: flex;           /* اضافه کردن این خط بسیار مهم است */
+    flex-direction: column;  /* چیدمان عمودی: عکس بالا، متن پایین */
+    text-decoration: none;
+    text-align: center;
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* حذف flex: 1 از اینجا اگر در جای دیگری برای کانتینر گذاشته‌ای،
+       اما اینجا برای خودِ باکس لازم نیست مگر اینکه در فلکس‌باکس اصلی باشد */
+}
+
+/* ۲. تنظیم بخش عکس برای اشغال ۷۵ درصد فضا */
+.category-image {
+    height: 85%;           /* دقیقاً ۳/۴ ارتفاع باکس را می‌گیرد */
+    width: 100%;
+    overflow: hidden;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;          /* عکس کل فضای ۷۵ درصدی را پر کند */
+    object-fit: cover;     /* جلوگیری از دفرمه شدن */
+    object-position: center 20%; /* تنظیم موقعیت عکس برای زیبایی */
+}
+
+/* ۳. تنظیم بخش متن برای ۲۵ درصد باقی‌مانده */
+.category-title {
+    height: 15%;           /* باقی‌مانده فضا برای متن */
+    display: flex;
+    align-items: center;   /* متن را عمودی وسط‌چین می‌کند */
+    justify-content: center;/* متن را افقی وسط‌چین می‌کند */
+    margin: 0;
+    padding: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* اصلاح برای موبایل */
+@media (max-width: 768px) {
+    .category-container {
+        flex-direction: column; /* در موبایل باکس‌ها زیر هم بیایند */
+        align-items: center;
+    }
+    .category-box {
+        width: 100%; /* در موبایل تمام عرض شوند */
+    }
+}
+
 

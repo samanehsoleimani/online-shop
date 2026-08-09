@@ -12,13 +12,15 @@
         <ul class="nav-links">
 
             <li class="search-container">
-            <form action="/search" method="GET">
-                <input type="text" name="q" placeholder="جستجو کنید..." class="search-input">
-            </form>
+                <form action="/" method="GET"> <!-- action را به / تغییر دادم چون route اصلی شما / است -->
+                    <input type="text" name="search" placeholder="جستجو کنید..." class="search-input">
+                </form>
+            </li>
 
             <li><a href="#">خانه</a></li>
             <li><a href="#">محصولات</a></li>
-            <li><a href="#">سبد خرید</a></li>
+            <li><a href="/user/cart">سبد خرید</a></li>
+            <li><a href="/about">درباره ما</a></li>
         </li>
 
              <li class="auth-item">
@@ -97,4 +99,35 @@
   });
 </script>
 </section>
+<!-- بخش دسته‌بندی‌های سریع (Category Boxes) -->
+<section class="category-shortcuts">
+    <div class="category-container">
+
+        <!-- باکس اول -->
+        <a href="/category/1" class="category-box">
+            <div class="category-image">
+                <img src="{{ url_for('static', filename='image/set.jpg') }}" alt="دسته بندی اول">
+            </div>
+            <span class="category-title">ست های جذاب</span>
+        </a>
+
+        <!-- باکس دوم -->
+        <a href="/category/2" class="category-box">
+            <div class="category-image">
+                <img src="{{ url_for('static', filename='image/beler.png') }}" alt="دسته بندی اول">
+            </div>
+            <span class="category-title">بیلر ها</span>
+        </a>
+
+        <!-- باکس سوم -->
+        <a href="/category/3" class="category-box">
+            <div class="category-image">
+                <img src="{{ url_for('static', filename='image/sarafon.png') }}" alt="دسته بندی اول">
+            </div>
+            <span class="category-title">سارافون ها</span>
+        </a>
+
+    </div>
+</section>
+
 {% endblock %}

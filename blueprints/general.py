@@ -1,7 +1,8 @@
 from itertools import product
+from re import search
 
-from flask import Blueprint,render_template
-
+import requests
+from flask import Blueprint, render_template, request
 from models.product import Product
 
 app = Blueprint("app" ,__name__)
@@ -9,8 +10,14 @@ app = Blueprint("app" ,__name__)
 
 @app.route('/')
 def home():
-    products = Product.query.filter(Product.active==1).all()
-    return render_template("main.html" ,  products=products)
+    search = request.args.get('search', None)
+    query = Product.query.filter(Product.active == 1)
+
+    if search:
+        query = query.filter(Product.name.like(f'%{search}%'))
+    products = query.all()
+
+    return render_template("main.html", products=products)
 
 
 @app.route('/product/<int:id>/<name>')
