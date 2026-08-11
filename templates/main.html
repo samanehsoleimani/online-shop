@@ -99,11 +99,9 @@
   });
 </script>
 </section>
-<!-- بخش دسته‌بندی‌های سریع (Category Boxes) -->
 <section class="category-shortcuts">
     <div class="category-container">
 
-        <!-- باکس اول -->
         <a href="/category/1" class="category-box">
             <div class="category-image">
                 <img src="{{ url_for('static', filename='image/set.jpg') }}" alt="دسته بندی اول">
@@ -111,7 +109,6 @@
             <span class="category-title">ست های جذاب</span>
         </a>
 
-        <!-- باکس دوم -->
         <a href="/category/2" class="category-box">
             <div class="category-image">
                 <img src="{{ url_for('static', filename='image/beler.png') }}" alt="دسته بندی اول">
@@ -119,7 +116,6 @@
             <span class="category-title">بیلر ها</span>
         </a>
 
-        <!-- باکس سوم -->
         <a href="/category/3" class="category-box">
             <div class="category-image">
                 <img src="{{ url_for('static', filename='image/sarafon.png') }}" alt="دسته بندی اول">
@@ -127,7 +123,43 @@
             <span class="category-title">سارافون ها</span>
         </a>
 
+        <a href="/category/4" class="category-box">
+            <div class="category-image">
+                <img src="{{ url_for('static', filename='image/sarhami.png') }}" alt="دسته بندی اول">
+            </div>
+            <span class="category-title">سرهمی ها </span>
+        </a>
+
     </div>
+
 </section>
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>درباره ما</h3>
+            <p>این فروشگاه با هدف ارائه بهترین محصولات با کیفیت بالا و قیمت مناسب برای شما طراحی شده است.</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>دسترسی سریع</h3>
+            <ul>
+                <li><a href="/">صفحه اصلی</a></li>
+                <li><a href="/about">درباره ما</a></li>
+                <li><a href="/contact">تماس با ما</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>ارتباط با ما</h3>
+            <p>تلفن: 09222684928</p>
+            <p>ایمیل: soleimanisaman08@gmail.com
+.com</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>تمامی حقوق این سایت متعلق به فروشگاه شماست &copy; 1403</p>
+    </div>
+</footer>
+
 
 {% endblock %}

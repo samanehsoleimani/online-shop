@@ -325,4 +325,216 @@ nav ul li a {
     }
 }
 
+.site-footer {
+    background-color: rgb(158, 102, 72);
+    color: #fff;
+    padding: 40px 20px;
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+}
+
+.footer-column h3 {
+    border-bottom: 2px solid #ff9900;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li a {
+    color: #ddd;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #ff9900;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #555;
+    margin-top: 20px;
+    padding-top: 20px;
+    font-size: 0.9em;
+}
+.auth-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+    direction: rtl;
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+}
+.flash-item {
+    background-color: #ffdddd;
+    color: #d8000c;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #d8000c;
+}
+
+body > p, .flash-message {
+    text-align: center;
+    font-size: 15px;
+    color: #721c24;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 25px 22px;
+    border-radius: 16px;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+
+.card-register {
+    box-shadow: 0 8px 25px rgba(233, 30, 99, 0.12);
+    border: 1px solid #f3d4e0;
+}
+
+.card-login {
+    box-shadow: 0 8px 25px rgba(25, 118, 210, 0.12);
+    border: 1px solid #cfe3f7;
+}
+
+.auth-card h1 {
+    text-align: center;
+    font-size: 21px;
+    color: #4a4a4a;
+    margin: 0 0 18px;
+    font-weight: 700;
+}
+
+.auth-card input:not([type="submit"]) {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.auth-card input:not([type="submit"]):focus {
+    outline: none;
+    border-color: #e91e63;
+    box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.12);
+}
+
+.card-register input[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #e91e63, #ad1457);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: transform 0.2s, opacity 0.3s;
+}
+.card-register input[type="submit"]:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.card-login input[type="submit"] {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, #1976d2, #0d47a1);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: transform 0.2s, opacity 0.3s;
+}
+.card-login input[type="submit"]:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.about-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f2d5bf;
+    padding: 20px;
+}
+
+.about-card {
+    background-color: #ffffff;
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    direction: rtl;
+}
+
+.about-title {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.about-content {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.divider {
+    margin: 30px 0;
+    opacity: 0.1;
+}
+
+.btn-back {
+    display: inline-block;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.btn-back:hover {
+    color: #0056b3;
+}
 
