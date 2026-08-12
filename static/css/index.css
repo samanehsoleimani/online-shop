@@ -238,24 +238,24 @@ nav ul li a {
     background-color: #e91e63;
     border-radius: 2px;
 }
-/* استایل بخش دسته‌بندی‌ها */
+
 .category-shortcuts {
-    padding: 40px 15px; /* فاصله از بالا و پایین */
-    max-width: 1200px; /* حداکثر عرض برای اینکه در مانیتورهای بزرگ خیلی پخش نشود */
-    margin: 0 auto; /* وسط چین کردن کل بخش */
+    padding: 40px 15px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .category-container {
     display: flex;
-    justify-content: center; /* وسط چین کردن باکس‌ها */
-    gap: 20px; /* فاصله بین سه باکس */
-    flex-wrap: wrap; /* اگر صفحه کوچک بود، باکس‌ها بروند زیر هم */
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .category-box {
     height: 400px;
-    display: flex;           /* اضافه کردن این خط بسیار مهم است */
-    flex-direction: column;  /* چیدمان عمودی: عکس بالا، متن پایین */
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     text-align: center;
     background: #fff;
@@ -263,20 +263,17 @@ nav ul li a {
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* حذف flex: 1 از اینجا اگر در جای دیگری برای کانتینر گذاشته‌ای،
-       اما اینجا برای خودِ باکس لازم نیست مگر اینکه در فلکس‌باکس اصلی باشد */
 }
 
 .category-box:hover {
-    transform: translateY(-10px); /* کمی بالا رفتن باکس هنگام نگه داشتن موس */
+    transform: translateY(-10px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
-/* ۱. تنظیم باکس اصلی */
 .category-box {
     height: 400px;
-    display: flex;           /* اضافه کردن این خط بسیار مهم است */
-    flex-direction: column;  /* چیدمان عمودی: عکس بالا، متن پایین */
+    display: flex;
+    flex-direction: column;
     text-decoration: none;
     text-align: center;
     background: #fff;
@@ -284,44 +281,39 @@ nav ul li a {
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* حذف flex: 1 از اینجا اگر در جای دیگری برای کانتینر گذاشته‌ای،
-       اما اینجا برای خودِ باکس لازم نیست مگر اینکه در فلکس‌باکس اصلی باشد */
 }
 
-/* ۲. تنظیم بخش عکس برای اشغال ۷۵ درصد فضا */
 .category-image {
-    height: 85%;           /* دقیقاً ۳/۴ ارتفاع باکس را می‌گیرد */
+    height: 85%;
     width: 100%;
     overflow: hidden;
 }
 
 .category-image img {
     width: 100%;
-    height: 100%;          /* عکس کل فضای ۷۵ درصدی را پر کند */
-    object-fit: cover;     /* جلوگیری از دفرمه شدن */
-    object-position: center 20%; /* تنظیم موقعیت عکس برای زیبایی */
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
 }
 
-/* ۳. تنظیم بخش متن برای ۲۵ درصد باقی‌مانده */
 .category-title {
-    height: 15%;           /* باقی‌مانده فضا برای متن */
+    height: 15%;
     display: flex;
-    align-items: center;   /* متن را عمودی وسط‌چین می‌کند */
-    justify-content: center;/* متن را افقی وسط‌چین می‌کند */
+    align-items: center;
+    justify-content: center;
     margin: 0;
     padding: 10px;
     font-weight: bold;
     color: #333;
 }
 
-/* اصلاح برای موبایل */
 @media (max-width: 768px) {
     .category-container {
-        flex-direction: column; /* در موبایل باکس‌ها زیر هم بیایند */
+        flex-direction: column;
         align-items: center;
     }
     .category-box {
-        width: 100%; /* در موبایل تمام عرض شوند */
+        width: 100%;
     }
 }
 
@@ -482,12 +474,21 @@ body > p, .flash-message {
 }
 
 
-body, html {
+html,
+body {
     margin: 0;
     padding: 0;
     height: 100%;
 }
 
+body {
+    padding-top: 120px;
+    font-size: 13px;
+    background: #f7f0e8;
+    color: #212121;
+    font-family: 'Vazirmatn', sans-serif;
+    box-sizing: border-box;
+}
 .about-wrapper {
     display: flex;
     justify-content: center;
@@ -538,3 +539,128 @@ body, html {
     color: #0056b3;
 }
 
+.cart-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    direction: rtl;
+    font-family: 'Tahoma', sans-serif;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.cart-item:hover {
+    transform: translateY(-3px);
+}
+
+.item-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.product-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.product-info {
+    font-size: 0.9rem;
+    color: #777;
+    display: flex;
+    gap: 15px;
+}
+
+.quantity {
+    color: #555;
+}
+
+.price {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.remove-form {
+    margin: 0;
+}
+
+.btn-remove {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+
+.btn-remove:hover {
+    background-color: #cc0000;
+}
+
+.cart-summary {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.total-price {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.btn-checkout {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-checkout:hover {
+    background-color: #2980b9;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 50px;
+    color: #999;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .remove-form {
+        width: 100%;
+    }
+
+    .btn-remove {
+        width: 100%;
+    }
+}

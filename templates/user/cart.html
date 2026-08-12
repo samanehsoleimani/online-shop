@@ -3,21 +3,97 @@
 {% block title %}سبد خرید{% endblock %}
 
 {% block body %}
-{% if cart!=None and cart.cart_items|list|length > 0 %}
-    {% for cart in current_user.carts | selectattr('status', 'equalto', 'pending') %}
-        {% for cart_item in cart.cart_items %}
-            {{ cart_item.product.name }}  , {{ cart_item.quantity }} , {{ cart_item.product.price }}
-    <form action="/remove_from_cart " method="get">
-        <input type="hidden" name="id" value="{{ cart_item.id }}">
-        <input type="submit" value="حذف">
-    </form>
+<header>
+    <nav>
+            <section class="logo">
+                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="sooribaaft">
+            </section>
+        <ul class="nav-links">
+
+            <li class="search-container">
+                <form action="/" method="GET">
+                    <input type="text" name="search" placeholder="جستجو کنید..." class="search-input">
+                </form>
+            </li>
+
+            <li><a href="#">خانه</a></li>
+            <li><a href="#">محصولات</a></li>
+            <li><a href="/user/cart">سبد خرید</a></li>
+            <li><a href="/about">درباره ما</a></li>
+        </li>
+
+             <li class="auth-item">
+            <a href="/user/login" class="auth-btn">ورود / ثبت‌نام</a>
+        </li>
+        </ul>
+    </nav>
+</header>
+<div class="cart-container">
+    {% if cart != None and cart.cart_items|list|length > 0 %}
+
+        {% for cart in current_user.carts | selectattr('status', 'equalto', 'pending') %}
+            <div class="cart-wrapper">
+
+                {% for cart_item in cart.cart_items %}
+                    <div class="cart-item">
+                        <div class="item-details">
+                            <span class="product-name">{{ cart_item.product.name }}</span>
+                            <span class="product-info">
+                                <span class="quantity">تعداد: {{ cart_item.quantity }}</span>
+                                <span class="price">قیمت: {{ cart_item.product.price }} تومان</span>
+                            </span>
+                        </div>
+
+                        <form class="remove-form" action="/remove_from_cart" method="get">
+                            <input type="hidden" name="id" value="{{ cart_item.id }}">
+                            <input type="submit" class="btn-remove" value="حذف">
+                        </form>
+                    </div>
+                {% endfor %}
+
+            </div>
         {% endfor %}
-    {% endfor %}
 
-    <b>قیمت کل : {{cart.total_price()}}</b>
+        <div class="cart-summary"> <!-- بخش جمع بندی و دکمه پرداخت -->
+            <b class="total-price">قیمت کل: {{cart.total_price()}} تومان</b>
+            <div class="actions">
+                <a href="/payment" class="btn-checkout">ادامه جهت پرداخت</a>
+            </div>
+        </div>
 
-    <a href="/payment">پرداخت</a>
-    {%else%}
-    سبد خرید خالی است ..
-{%endif%}
+    {% else %}
+        <div class="empty-cart">
+            <p>سبد خرید خالی است ..</p>
+        </div>
+    {% endif %}
+</div>
+<footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-column">
+            <h3>درباره ما</h3>
+            <p>این فروشگاه با هدف ارائه بهترین محصولات با کیفیت بالا و قیمت مناسب برای شما طراحی شده است.</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>دسترسی سریع</h3>
+            <ul>
+                <li><a href="/">صفحه اصلی</a></li>
+                <li><a href="/about">درباره ما</a></li>
+                <li><a href="/contact">تماس با ما</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h3>ارتباط با ما</h3>
+            <p>تلفن: 09222684928</p>
+            <p>ایمیل: soleimanisaman08@gmail.com
+.com</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>تمامی حقوق این سایت متعلق به فروشگاه شماست &copy; 1403</p>
+    </div>
+</footer>
+
+
 {% endblock %}
