@@ -6,6 +6,7 @@ import os
 import config
 from models.cart import Cart
 from models.product import Product
+from models.category import Category
 from extentions import db
 admin = Blueprint(
     'admin',
@@ -49,53 +50,83 @@ def order(id):
         db.session.commit()
         return redirect(url_for('admin.order', id=id))
 
-
-@admin.route('/admin/dashboard/products', methods=['GET' ,'POST'])
+@admin.route('/admin/dashboard/products', methods=['GET', 'POST'])
 def products():
+
     if request.method == "GET":
-        products=Product.query.all()
-        return render_template('products.html',products=products)
+        products = Product.query.all()
+        categories = Category.query.all()
+
+        return render_template(
+            'products.html',
+            products=products,
+            categories=categories
+        )
+
     else:
-        name = request.form.get('name',None)
-        price = request.form.get('price',None)
-        description = request.form.get('description',None)
-        active =request.form.get('active',None)
-        file = request.files.get('cover' , None)
-        p = Product( name=name ,description=description,price=price)
-        if active == None:
+        name = request.form.get('name')
+        price = request.form.get('price')
+        description = request.form.get('description')
+        active = request.form.get('active')
+        category_id = request.form.get('category_id')
+        file = request.files.get('cover')
+
+        p = Product(
+            name=name,
+            description=description,
+            price=price,
+            category_id=category_id
+        )
+
+        if active is None:
             p.active = 0
         else:
-             p.active = 1
+            p.active = 1
+
         db.session.add(p)
         db.session.commit()
 
-        file.save(f'static/cover/{p.id}.jpg')
-        return "done"
+        if file:
+            file.save(f'static/cover/{p.id}.jpg')
 
+        return "done"
 @admin.route('/admin/dashboard/edit-product/<id>', methods=['GET', 'POST'])
 def edit_product(id):
+
     product = Product.query.filter(Product.id == id).first_or_404()
 
     if request.method == "GET":
-            return render_template("edit-product.html", product=product)
+        categories = Category.query.all()
+
+        return render_template(
+            "edit-product.html",
+            product=product,
+            categories=categories
+        )
+
     else:
-            name = request.form.get('name', None)
-            price = request.form.get('price', None)
-            description = request.form.get('description', None)
-            active = request.form.get('active', None)
-            file = request.files.get('cover', None)
+        name = request.form.get('name')
+        price = request.form.get('price')
+        description = request.form.get('description')
+        active = request.form.get('active')
+        category_id = request.form.get('category_id')
+        file = request.files.get('cover')
 
-            product.name=name
-            product.description=description
-            product.price=price
-            if active == None:
-                product.active = 0
-            else:
-                product.active =1
+        product.name = name
+        product.description = description
+        product.price = price
+        product.category_id = category_id
 
-            db.session.commit()
+        if active is None:
+            product.active = 0
+        else:
+            product.active = 1
 
-            if file != None:
-                file.save(f'static/cover/{product.id}.jpg')
-            return redirect(url_for("admin.edit_product" , id = id))
+        db.session.commit()
 
+        if file:
+            file.save(f'static/cover/{product.id}.jpg')
+
+        return redirect(
+            url_for("admin.edit_product", id=id)
+        )

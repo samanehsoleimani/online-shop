@@ -1,20 +1,102 @@
 {% extends 'base.html' %}
 
 {% block haeder %}
-<title> admin dashboard</title>
+<title>پنل مدیریت</title>
 {% endblock %}
 
 {% block body %}
-<a href="/admin/dashboard/products">صفحه محصولات</a>
-    <div>
-    {%for cart in cart%}
-        {{ cart.user.phone }}
-        {{ cart.get_status_persian() }}
 
-        <a href="{{ url_for('admin.order', id=cart.id) }}">
-            اطلاعات بیشتر
+<div class="admin-dashboard">
+
+    <div class="admin-dashboard-header">
+
+        <div>
+            <span class="admin-dashboard-label">مدیریت فروشگاه</span>
+            <h1>پنل مدیریت</h1>
+            <p>مدیریت سفارش‌ها و محصولات فروشگاه</p>
+        </div>
+
+        <a href="/admin/dashboard/products" class="admin-products-button">
+            🛍️ مدیریت محصولات
         </a>
 
-    {%endfor%}
     </div>
+
+
+    <div class="admin-orders-section">
+
+        <div class="admin-section-title">
+            <h2>سفارش‌های مشتریان</h2>
+            <span>{{ cart|length }} سفارش</span>
+        </div>
+
+
+        <div class="admin-orders-list">
+
+            {% for order in cart %}
+
+            <div class="admin-order-card">
+
+                <div class="admin-order-number">
+                    <span>سفارش</span>
+                    <strong>#{{ order.id }}</strong>
+                </div>
+
+
+                <div class="admin-customer">
+
+                    <span class="admin-info-label">
+                        شماره مشتری
+                    </span>
+
+                    <span class="admin-phone">
+                        📱 {{ order.user.phone }}
+                    </span>
+
+                </div>
+
+
+                <div class="admin-order-status">
+
+                    <span class="admin-info-label">
+                        وضعیت سفارش
+                    </span>
+
+                    <span class="admin-status-badge">
+                        {{ order.get_status_persian() }}
+                    </span>
+
+                </div>
+
+
+                <a href="{{ url_for('admin.order', id=order.id) }}"
+                   class="admin-order-button">
+
+                    مشاهده جزئیات
+                    <span>←</span>
+
+                </a>
+
+            </div>
+
+            {% else %}
+
+            <div class="admin-empty-orders">
+                <div class="admin-empty-icon">📦</div>
+
+                <h3>هنوز سفارشی ثبت نشده</h3>
+
+                <p>
+                    وقتی مشتری سفارشی ثبت کند، اطلاعات آن اینجا نمایش داده می‌شود.
+                </p>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</div>
+
 {% endblock %}

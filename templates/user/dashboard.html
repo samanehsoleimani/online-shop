@@ -6,10 +6,34 @@
 
 {% block body %}
 
- {% for cart in current_user.carts | selectattr('status', '!=', 'pending') %}
-<a href="{{ url_for('user.order', id=cart.id) }}">
-    {{ cart.id }} - {{ cart.get_status_persian() }}
-</a><br>
-{% endfor %}
+<div class="dashboard-container">
+
+    <div class="dashboard-header">
+        <h1>پنل کاربری</h1>
+        <p>سفارش‌های شما</p>
+    </div>
+
+    <div class="orders-list">
+
+        {% for cart in current_user.carts | selectattr('status', '!=', 'pending') %}
+
+        <a class="order-card" href="{{ url_for('user.order', id=cart.id) }}">
+
+            <div class="order-info">
+                <span class="order-label">سفارش شماره</span>
+                <span class="order-id">{{ cart.id }}</span>
+            </div>
+
+            <div class="order-status">
+                {{ cart.get_status_persian() }}
+            </div>
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</div>
 
 {% endblock %}

@@ -1,21 +1,163 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<title> edit products</title>
+<title>ویرایش محصول</title>
 {% endblock %}
 
 {% block body %}
-<td><img style="width : 50px" src="/static/cover/{{ product.id }}.jpg"></td>
 
-<form action="#" method="POST" enctype="multipart/form-data">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-    <label>cover : </label><input type="file" name="cover"><br>
-    <input type="text" name="name" value="{{product.name}}" placeholder="نام محصول"><br>
-    <input type="number" name="price"  value="{{product.price}}" placeholder="قیمت محصول"><br>
-    <textarea name="description"  value="{{product.description}}" placeholder="توضیحات"></textarea><br>
-    <input type="checkbox" value="1" name="active" {% if product.active == 1 %}checked{% endif %}><br><br>
-    <button type="submit">ثبت</button>
+<div class="edit-product-container">
+
+    <div class="edit-product-card">
+
+        <div class="edit-product-header">
+            <h1>ویرایش محصول</h1>
+            <p>اطلاعات محصول را ویرایش و ذخیره کنید</p>
+        </div>
+
+        <div class="current-product-image">
+
+            <img
+                src="/static/cover/{{ product.id }}.jpg"
+                alt="{{ product.name }}"
+            >
+
+            <span>تصویر فعلی محصول</span>
+
+        </div>
 
 
-</form>
+        <form
+            action="#"
+            method="POST"
+            enctype="multipart/form-data"
+            class="edit-product-form"
+        >
+            <input
+                type="hidden"
+                name="csrf_token"
+                value="{{ csrf_token() }}"
+            >
+
+            <div class="edit-form-group">
+
+                <label>تغییر تصویر محصول</label>
+
+                <input
+                    type="file"
+                    name="cover"
+                >
+
+                <small>
+                    اگر نمی‌خواهید تصویر تغییر کند، این قسمت را خالی بگذارید.
+                </small>
+
+            </div>
+
+            <div class="edit-form-group">
+
+                <label>نام محصول</label>
+
+                <input
+                    type="text"
+                    name="name"
+                    value="{{ product.name }}"
+                    placeholder="نام محصول"
+                >
+
+            </div>
+
+
+            <div class="edit-form-group">
+
+                <label>قیمت محصول</label>
+
+                <input
+                    type="number"
+                    name="price"
+                    value="{{ product.price }}"
+                    placeholder="قیمت محصول"
+                >
+
+            </div>
+
+            <div class="edit-form-group">
+
+                <label for="category_id">
+                    دسته‌بندی محصول
+                </label>
+
+                <select
+                    name="category_id"
+                    id="category_id"
+                >
+
+                    <option
+                        value=""
+                        {% if product.category_id is none %}
+                            selected
+                        {% endif %}
+                    >
+                        بدون دسته‌بندی
+                    </option>
+
+                    {% for category in categories %}
+
+                        <option
+                            value="{{ category.id }}"
+                            {% if product.category_id == category.id %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ category.name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <div class="edit-form-group">
+
+                <label>توضیحات محصول</label>
+
+                <textarea
+                    name="description"
+                    placeholder="توضیحات محصول"
+                >{{ product.description }}</textarea>
+
+            </div>
+
+            <label class="edit-active-checkbox">
+
+                <input
+                    type="checkbox"
+                    value="1"
+                    name="active"
+                    {% if product.active == 1 %}
+                        checked
+                    {% endif %}
+                >
+
+                <span>
+                    این محصول فعال باشد
+                </span>
+
+            </label>
+
+            <button
+                type="submit"
+                class="save-product-btn"
+            >
+                ✓ ذخیره تغییرات
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
 {% endblock %}

@@ -1,17 +1,66 @@
 {% extends "base.html" %}
 
-{% block title %}admin login{% endblock %}
+{% block title %}ورود مدیر{% endblock %}
 
 {% block header %}
-<!-- اگر CSS یا اسکریپت اضافی داری اینجا بذار -->
 {% endblock %}
 
 {% block body %}
-<h1>admin login</h1>
-<form action="#" method="post">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
-    <input type="submit">
-</form>
+
+<div class="admin-login-page">
+
+    <div class="admin-login-card">
+
+        <div class="admin-login-icon">
+            🔐
+        </div>
+
+        <h1>ورود به پنل مدیریت</h1>
+
+        <p class="admin-login-subtitle">
+            برای ورود به پنل مدیریت اطلاعات خود را وارد کنید
+        </p>
+
+        <form action="#" method="post" class="admin-login-form">
+
+            <input type="hidden"
+                   name="csrf_token"
+                   value="{{ csrf_token() }}">
+
+            <div class="admin-input-group">
+                <label for="username">نام کاربری</label>
+
+                <input
+                    id="username"
+                    type="text"
+                    name="username"
+                    placeholder="نام کاربری خود را وارد کنید"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div class="admin-input-group">
+                <label for="password">رمز عبور</label>
+
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="رمز عبور خود را وارد کنید"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="admin-login-button">
+                ورود به پنل
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
 {% endblock %}

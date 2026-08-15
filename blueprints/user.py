@@ -13,19 +13,20 @@ import requests
 app = Blueprint("user" ,__name__)
 
 
-@app.route('/user/login', methods= ['GET', 'POST'])
+@app.route('/user/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template("user/login.html")
     else:
-        register = request.form.get('register' ,None)
-        username=request.form.get('username', None)
-        password=request.form.get('password')
-        phone=request.form.get('phone', None)
-        address=request.form.get('address', None)
+        register = request.form.get('register', None)
+        username = request.form.get('username', None)
+        password = request.form.get('password')
+        phone = request.form.get('phone', None)
+        address = request.form.get('address', None)
+
+        next_page = request.args.get('next')
 
         if register != None:
-            # حالا مستقیماً از User استفاده کن
             new_user = User(
                 username=username,
                 password=sha256_crypt.hash(password),
@@ -36,23 +37,32 @@ def login():
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
+
+            if next_page and next_page.startswith('/'):
+                return redirect(next_page)
+
             return redirect('/user/dashboard')
 
-
         else:
-            user= User.query.filter(User.username == username).first()
+            user = User.query.filter(User.username == username).first()
+
             if user == None:
-                flash('نام کاربری یا رمز اشتباه است .')
+                flash('نام کاربری یا رمز اشتباه است.')
                 return redirect(url_for('user.login'))
 
-            if sha256_crypt.verify(password,user.password):
+            if sha256_crypt.verify(password, user.password):
                 login_user(user)
+
+                if next_page and next_page.startswith('/'):
+                    return redirect(next_page)
+
                 return redirect('/user/dashboard')
+
             else:
                 flash('نام کاربری یا رمز اشتباه است...')
                 return redirect(url_for('user.login'))
 
-        return  'done'
+        return 'done'
 
 
 
@@ -71,7 +81,7 @@ def add_to_cart():
         cart = Cart()
         current_user.carts.append(cart)
         db.session.add(cart)
-        db.session.flush()   # تا cart.id ساخته شود
+        db.session.flush()
 
     cart_item = CartItem.query.filter_by(
         cart_id=cart.id,

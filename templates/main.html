@@ -1,164 +1,337 @@
 {% extends "base.html" %}
 
-{% block title %}سیسمونی سوری بافت{% endblock %}
+{% block title %}
+سیسمونی سوری بافت
+{% endblock %}
+
 
 {% block body %}
 
 <header>
     <nav>
-            <section class="logo">
-                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="sooribaaft">
-            </section>
+
+        <section class="logo">
+            <img
+                src="{{ url_for('static', filename='image/logo.png') }}"
+                alt="sooribaaft"
+            >
+        </section>
+
+
         <ul class="nav-links">
 
             <li class="search-container">
-                <form action="/" method="GET"> <!-- action را به / تغییر دادم چون route اصلی شما / است -->
-                    <input type="text" name="search" placeholder="جستجو کنید..." class="search-input">
+
+                <form action="/" method="GET">
+
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="جستجو کنید..."
+                        class="search-input"
+                    >
+
                 </form>
+
             </li>
 
-            <li><a href="/">خانه</a></li>
-            <li><a href="/user/cart">سبد خرید</a></li>
-            <li><a href="/about">درباره ما</a></li>
-        </li>
 
-             <li class="auth-item">
-            <a href="/user/login" class="auth-btn">ورود / ثبت‌نام</a>
-        </li>
+            <li>
+                <a href="/">خانه</a>
+            </li>
+
+
+            <li>
+                <a href="/user/cart">سبد خرید</a>
+            </li>
+
+
+            <li>
+                <a href="/about">درباره ما</a>
+            </li>
+
+
+            <li class="auth-item">
+
+                <a
+                    href="/user/login"
+                    class="auth-btn"
+                >
+                    ورود / ثبت‌نام
+                </a>
+
+            </li>
+
         </ul>
+
     </nav>
 </header>
 
 
-
-
- <!-- Swiper Container -->
 <div style="text-align: center; margin-bottom: 20px;">
-    <h2 style="font-size: 24px; color: #333;">پرفروش‌ترین محصولات</h2>
+
+    <h2 style="font-size: 24px; color: #333;">
+        پرفروش‌ترین محصولات
+    </h2>
+
 </div>
+
+
 <div class="swiper mySwiper">
+
     <div class="swiper-wrapper">
+
         {% for p in products %}
+
             <div class="swiper-slide">
+
                 <div class="product-card">
-                    <a href="{{ url_for('app.product', id=p.id, name=p.name) }}">
+
+                    <a
+                        href="{{ url_for(
+                            'app.product',
+                            id=p.id,
+                            name=p.name
+                        ) }}"
+                    >
+
                         <div class="product-image">
-                            <img src="{{ url_for('static', filename='cover/' + p.id|string + '.jpg') }}" alt="{{ p.name }}">
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='cover/' + p.id|string + '.jpg'
+                                ) }}"
+                                alt="{{ p.name }}"
+                            >
+
                         </div>
+
+
                         <div class="product-info">
-                            <h3 class="product-name">{{ p.name }}</h3>
-                            <p class="product-price">{{ "{:,.0f}".format(p.price) }} تومان</p>
+
+                            <h3 class="product-name">
+                                {{ p.name }}
+                            </h3>
+
+
+                            <p class="product-price">
+                                {{ "{:,.0f}".format(p.price) }}
+                                تومان
+                            </p>
+
                         </div>
+
                     </a>
+
                 </div>
+
             </div>
+
         {% endfor %}
+
     </div>
 
-    <!-- دکمه‌ها و نقاط -->
+
     <div class="swiper-button-next"></div>
+
     <div class="swiper-button-prev"></div>
+
     <div class="swiper-pagination"></div>
+
 </div>
+
+<section class="category-shortcuts">
+
+    <div class="category-container">
+
+        {% for category in categories %}
+
+            <a
+                href="{{ url_for(
+                    'app.category',
+                    id=category.id
+                ) }}"
+                class="category-box"
+            >
+
+                <div class="category-image">
+
+                    {% if category.image %}
+
+                        <img
+                            src="{{ url_for(
+                                'static',
+                                filename='image/' + category.image
+                            ) }}"
+                            alt="{{ category.name }}"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+
+                <span class="category-title">
+                    {{ category.name }}
+                </span>
+
+            </a>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-column">
+
+            <h3>درباره ما</h3>
+
+            <p>
+                این فروشگاه با هدف ارائه بهترین محصولات
+                با کیفیت بالا و قیمت مناسب برای شما طراحی شده است.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>دسترسی سریع</h3>
+
+            <ul>
+
+                <li>
+                    <a href="/">
+                        صفحه اصلی
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/about">
+                        درباره ما
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/contact">
+                        تماس با ما
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>ارتباط با ما</h3>
+
+            <p>
+                تلفن: 09222684928
+            </p>
+
+            <p>
+                ایمیل: soleimanisaman08@gmail.com
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            تمامی حقوق این سایت متعلق به فروشگاه شماست
+            &copy; 1403
+        </p>
+
+    </div>
+
+</footer>
+
 
 {% endblock %}
 
+
+
 {% block scripts %}
+
 <script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 10,
-    loop: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-    breakpoints: {
-      640: {
-        slidesPerView: 2,
-        spaceBetween: 15,
-      },
-      768: {
-        slidesPerView: 3,
-        spaceBetween: 20,
-      },
-      1024: {
-        slidesPerView: 4,
-        spaceBetween: 25,
-      },
-      1440: {
-        slidesPerView: 5,
-        spaceBetween: 30,
-      }
-    },
-  });
+
+    var swiper = new Swiper(".mySwiper", {
+
+        slidesPerView: 1,
+
+        spaceBetween: 10,
+
+        loop: true,
+
+
+        pagination: {
+
+            el: ".swiper-pagination",
+
+            clickable: true,
+
+        },
+
+
+        autoplay: {
+
+            delay: 2500,
+
+            disableOnInteraction: false,
+
+        },
+
+
+        breakpoints: {
+
+            640: {
+
+                slidesPerView: 2,
+
+                spaceBetween: 15,
+
+            },
+
+            768: {
+
+                slidesPerView: 3,
+
+                spaceBetween: 20,
+
+            },
+
+            1024: {
+
+                slidesPerView: 4,
+
+                spaceBetween: 25,
+
+            },
+
+            1440: {
+
+                slidesPerView: 5,
+
+                spaceBetween: 30,
+
+            }
+
+        }
+
+    });
+
 </script>
-</section>
-<section class="category-shortcuts">
-    <div class="category-container">
-
-        <a href="/category/1" class="category-box">
-            <div class="category-image">
-                <img src="{{ url_for('static', filename='image/set.jpg') }}" alt="دسته بندی اول">
-            </div>
-            <span class="category-title">ست های جذاب</span>
-        </a>
-
-        <a href="/category/2" class="category-box">
-            <div class="category-image">
-                <img src="{{ url_for('static', filename='image/beler.png') }}" alt="دسته بندی اول">
-            </div>
-            <span class="category-title">بیلر ها</span>
-        </a>
-
-        <a href="/category/3" class="category-box">
-            <div class="category-image">
-                <img src="{{ url_for('static', filename='image/sarafon.png') }}" alt="دسته بندی اول">
-            </div>
-            <span class="category-title">سارافون ها</span>
-        </a>
-
-        <a href="/category/4" class="category-box">
-            <div class="category-image">
-                <img src="{{ url_for('static', filename='image/sarhami.png') }}" alt="دسته بندی اول">
-            </div>
-            <span class="category-title">سرهمی ها </span>
-        </a>
-
-    </div>
-
-</section>
-<footer class="site-footer">
-    <div class="footer-container">
-        <div class="footer-column">
-            <h3>درباره ما</h3>
-            <p>این فروشگاه با هدف ارائه بهترین محصولات با کیفیت بالا و قیمت مناسب برای شما طراحی شده است.</p>
-        </div>
-
-        <div class="footer-column">
-            <h3>دسترسی سریع</h3>
-            <ul>
-                <li><a href="/">صفحه اصلی</a></li>
-                <li><a href="/about">درباره ما</a></li>
-                <li><a href="/contact">تماس با ما</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-column">
-            <h3>ارتباط با ما</h3>
-            <p>تلفن: 09222684928</p>
-            <p>ایمیل: soleimanisaman08@gmail.com
-.com</p>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>تمامی حقوق این سایت متعلق به فروشگاه شماست &copy; 1403</p>
-    </div>
-</footer>
-
 
 {% endblock %}

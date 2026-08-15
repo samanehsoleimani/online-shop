@@ -16,8 +16,7 @@
                 </form>
             </li>
 
-            <li><a href="#">خانه</a></li>
-            <li><a href="#">محصولات</a></li>
+            <li><a href="/">خانه</a></li>
             <li><a href="/user/cart">سبد خرید</a></li>
             <li><a href="/about">درباره ما</a></li>
         </li>
@@ -54,7 +53,7 @@
             </div>
         {% endfor %}
 
-        <div class="cart-summary"> <!-- بخش جمع بندی و دکمه پرداخت -->
+        <div class="cart-summary">
             <b class="total-price">قیمت کل: {{cart.total_price()}} تومان</b>
             <div class="actions">
                 <a href="/payment" class="btn-checkout">ادامه جهت پرداخت</a>

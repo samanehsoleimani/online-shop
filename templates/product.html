@@ -3,16 +3,19 @@
 {% block title %}محصول {{ product.name}}{% endblock %}
 
 {% block body %}
-<img style="width : 50px" src="/static/cover/{{ product.id }}.jpg">
+<div class="product-container">
+<img class="product-detail-image" src="/static/cover/{{ product.id }}.jpg" alt="{{ product.name }} image">
+    <div class="product-details">
+        <span class="product-id">شناسه: {{ product.id }}</span>
+        <h1>{{ product.name }}</h1>
+        <p class="product-price">{{ product.price }} تومان</p>
 
-        {{product.id}}<br>
-        {{product.name}}<br>
-        {{product.price}}<br>
+        <p class="product-description">{{ product.description }}</p>
 
-        <form method="get" action="/add_to_cart">
-                <input type="hidden" name="id" value="{{ product.id}}">
-                <input type="submit"  value="اضافه کردن به سبد خرید">
-
+        <form method="get" action="/add_to_cart" class="add-to-cart-form">
+            <input type="hidden" name="id" value="{{ product.id}}">
+            <input type="submit" class="add-to-cart-button" value="اضافه کردن به سبد خرید">
         </form>
-
+    </div>
+</div>
 {% endblock %}

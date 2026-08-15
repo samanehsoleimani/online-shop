@@ -1,25 +1,91 @@
 {% extends 'base.html' %}
 
 {% block haeder %}
-<title> سفارشات</title>
+<title>سفارشات</title>
 {% endblock %}
 
 {% block body %}
-<form action="#" method="post">
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-    <select name="status">
-        <option  value="pending" {% if cart.status =="pending" %}selected {% endif %}> در انتظار پرداخت (سبد خرید )</option>
-        <option  value="paid"{% if cart.status =="paid" %}selected {% endif %}>پرداخت شده</option>
-        <option  value="sent"{% if cart.status =="sent" %}selected {% endif %}>ارسال شده</option>
-        <option  value="rejected"{% if cart.status =="rejected" %}selected {% endif %}>رد شده </option>
-    </select>
-    <input type="submit" value="تغییر">
-</form>
 
-    {{cart.status}}
-    <div>
-    {% for item in cart.cart_items %}
-        {{item.product.name }}<br>
-    {%endfor%}
+<div class="admin-order-container">
+
+    <div class="admin-order-card">
+
+        <div class="admin-order-title">
+            <h1>مدیریت سفارش</h1>
+            <p>وضعیت و محصولات این سفارش را مدیریت کنید</p>
+        </div>
+
+        <div class="order-status-box">
+
+            <label>وضعیت سفارش</label>
+
+            <form action="#" method="post" class="order-status-form">
+
+                <input type="hidden"
+                       name="csrf_token"
+                       value="{{ csrf_token() }}">
+
+                <select name="status">
+
+                    <option value="pending"
+                        {% if cart.status =="pending" %}selected{% endif %}>
+                        در انتظار پرداخت (سبد خرید)
+                    </option>
+
+                    <option value="paid"
+                        {% if cart.status =="paid" %}selected{% endif %}>
+                        پرداخت شده
+                    </option>
+
+                    <option value="sent"
+                        {% if cart.status =="sent" %}selected{% endif %}>
+                        ارسال شده
+                    </option>
+
+                    <option value="rejected"
+                        {% if cart.status =="rejected" %}selected{% endif %}>
+                        رد شده
+                    </option>
+
+                </select>
+
+                <input type="submit" value="ذخیره تغییرات">
+
+            </form>
+
+        </div>
+
+        <div class="current-order-status">
+            وضعیت فعلی:
+            {{ cart.get_status_persian() }}
+        </div>
+
+        <h2 class="order-products-title">
+            محصولات این سفارش
+        </h2>
+
+        <div class="order-products">
+
+            {% for item in cart.cart_items %}
+
+            <div class="order-product-item">
+
+                <span class="order-product-name">
+                    {{ item.product.name }}
+                </span>
+
+                <span class="order-product-number">
+                    {{ loop.index }}
+                </span>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
     </div>
+
+</div>
+
 {% endblock %}
