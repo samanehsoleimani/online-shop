@@ -3,6 +3,66 @@
 {% block title %}درباره ما{% endblock %}
 
 {% block body %}
+
+<header>
+    <nav>
+
+        <section class="logo">
+            <img
+                src="{{ url_for('static', filename='image/logo.png') }}"
+                alt="sooribaaft"
+            >
+        </section>
+
+
+        <ul class="nav-links">
+
+            <li class="search-container">
+
+                <form action="/" method="GET">
+
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="جستجو کنید..."
+                        class="search-input"
+                    >
+
+                </form>
+
+            </li>
+
+
+            <li>
+                <a href="/">خانه</a>
+            </li>
+
+
+            <li>
+                <a href="/user/cart">سبد خرید</a>
+            </li>
+
+
+            <li>
+                <a href="/about">درباره ما</a>
+            </li>
+
+
+            <li class="auth-item">
+
+                <a
+                    href="/user/login"
+                    class="auth-btn"
+                >
+                    ورود / ثبت‌نام
+                </a>
+
+            </li>
+
+        </ul>
+
+    </nav>
+</header>
 <div class="about-wrapper">
     <div class="about-card">
         <h1 class="about-title">درباره ما</h1>
